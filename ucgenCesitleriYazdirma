@@ -1,0 +1,122 @@
+//Ikra Nergiz
+//Bu program kullanicidan alinan degere gore ekrana duz ucgen, ters ucgen veya elmas sekli basar.
+
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+void tersUcgen(int deger); //fonksiyon prototipi.
+void duzUcgen(int deger); //fonksiyon prototipi.
+
+int main() {
+
+	int ucgenCesidi; //kullanicinin sectigi ucgenin numarasini tutacak degisken.
+
+	cout << "Bu program ekrana sececginiz ucgeni basar." << endl; //kullanici bilgilendirilir.
+	cout << "1.Duz ucgen" << endl << "2.Ters ucgen" << endl << "3.Elmas" << endl << "0.Cikis" << endl; //kullanici bilgilendirilir.
+	cin >> ucgenCesidi; //kullanicidan istedigi ucgen cesidinin numarasi alinir.
+
+	int gecerliUcgenSayisi = 3; //kullanicinin girebilecegi maximum ucgen boyutu sayisi.
+
+	while (gecerliUcgenSayisi != 0) //alinan ucgen boyutu sayisi 0 degilse bu deger istenilmeye devam eder.
+	{
+		if (ucgenCesidi == 0) //kullanicidan alinan deger 0 ise program sonlanir.
+		{
+			exit(0);
+		}
+
+		int deger; //secilen ucgenin boyut degerini tutan degisken.
+		cout << "Lutfen ucgen boyutu icin [3,15] araliginda bir tek tam sayi giriniz. "; //kullanicidan sectigi ucgen icin ucgenin boyut degeri istenir.
+		cin >> deger; //kullanicidan deger alinir.
+
+		if (deger < 3 || deger>15) // secilen ucgen degeri icin alinan boyut degeri uygun aralikta degilse kullanici bilgilendirilir.
+		{
+			cout << "Lutfen [3,15] araligindaki tek tam sayilari girin." << endl;
+		}
+
+		else if (deger % 2 == 0) // secilen ucgen degeri icin alinan boyut degeri bir cift tam sayi ise kullanici bilgilendirilir.
+		{
+			cout << "Cift tam sayi girdiniz.Lutfen [3,15] araligindaki tek tam sayilari girin. " << endl;
+		}
+
+		else //alinan boyut degeri istenilen bir tam sayi ise ucgen cesidi icin alinan degerlere gore fonksiyonlar cagirilir.
+		{
+			if (ucgenCesidi == 1)//ucgen cesidi icin alinan deger 1 ise duz ucgen ekrana basilir.
+				duzUcgen(deger);
+
+			else if (ucgenCesidi == 2) //ucgen cesidi icin alinan deger 2 ise ters ucgen ekrana basilir.
+				tersUcgen(deger);
+
+			else if (ucgenCesidi == 3) //ucgen cesidi icin alinan deger 3 ise elmas sekli ekrana basilir.
+			{
+				duzUcgen(deger);
+				tersUcgen(deger);
+			}
+
+		}
+
+		gecerliUcgenSayisi--; //gecerli bir boyut degeri girilmediyse kullanicinin girebilecegi ucgen boyutu sayisi bir azaltılır.
+	}
+
+	return 0;
+}
+	void tersUcgen(int deger) //ekrana ters ucgen basacak fonksiyon.
+	{
+		int yildizSayisi, boslukSayisi; //ekrana duz ucgen basmak icin kullanilacak degiskenler.
+		boslukSayisi = 0; //ilk satirda bosluk olmadigindan 0 degeri atadik.
+		yildizSayisi = deger; // deger degiskeni ters ucgenin ilk satirindaki yildiz sayisi oldugu icin boyle bir atama yaptik.
+
+		int satirSayisi = (deger + 1) / 2; //ucgenin satir sayisi ile ilk satirdaki yildiz sayisi olan deger degiskeninin arasinda boyle bir iliski vardir. 
+
+		int i = 0; // while dongusunu baslatacak degisken.
+		while (i < satirSayisi) //bu dongu satir sayilarini sayar.
+		{
+			int j = 0; // while dongusunu baslatacak degisken.
+			while (j < boslukSayisi) //bu dongu bosluk basar.
+			{
+				cout << " ";
+				++j; //dongu devami icin dongu degiskeni arttirilir.
+			}
+			int k = 0; // while dongusunu baslatacak degisken.
+			while (k < yildizSayisi)  //bu dongu yildiz basar.
+			{
+				cout << "*";
+				++k; //dongu devami icin dongu degiskeni arttirilir.
+			}
+
+			cout << endl; //bir satir bittikten sonra bir alt satira gecilir.
+
+			boslukSayisi += 1; //bir alt satira gecildiginde bosluk sayisi 1 artar.
+			yildizSayisi -= 2; //bir alt satira gecildiginde yildiz sayisi 2 azalir.
+
+			++i; //dongu devami icin dongu degiskeni arttirilir.
+		}
+	}
+	void duzUcgen(int deger)//bu fonksiyon aldigi parametre ile ekrana duz ucgen basar.
+	{
+		int yildizSayisi, boslukSayisi; //ekrana duz ucgen basmak icin kullanilacak degiskenler.
+
+		deger = (deger + 1) / 2;//alinan degere ucgenin satir sayisi atanir.
+		boslukSayisi = deger - 1; //duz ucgen cizecegimizden ilk satirdaki bosluk sayisini bu degiskene atadik.
+		yildizSayisi = 1; //duz ucgen cizecegimizden ilk satirdaki yildiz sayisini atadik.
+
+		for (int i = 0; i < deger; ++i)//satir sayisini sayar.
+		{
+
+			for (int j = 0; j < boslukSayisi; ++j)//satira bosluk basar.
+			{
+				cout << " ";
+			}
+
+			for (int k = 0; k < yildizSayisi; ++k) //satira yildiz basar.
+			{
+				cout << "*";
+			}
+
+			cout << endl; //satir sonunda bir alt satira gecer.
+
+			boslukSayisi -= 1;// bir alt satira her gectigimizde bosluk sayisi 1 azalir.
+			yildizSayisi += 2; // bir alt satira her gectigimizde yildiz sayisi 2 artar.
+		}
+	}
