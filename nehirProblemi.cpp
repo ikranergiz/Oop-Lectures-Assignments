@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//aşağıdaki satırları yoruma alarak kodunuzu farklı şekillerde test edebilirsiniz.
+//aÃ¾aÃ°Ã½daki satÃ½rlarÃ½ yoruma alarak kodunuzu farklÃ½ Ã¾ekillerde test edebilirsiniz.
 #define _TEST_ITERATIVE_
 #define _TEST_RECURSIVE_
 
@@ -18,10 +18,10 @@ using namespace std;
 */
  long long recursiveFunction(int numberOfStones)
 {
-	 /*Dizinin artış miktarını tuttuğum dizi*/
+	 /*Dizinin artÃ½Ã¾ miktarÃ½nÃ½ tuttuÃ°um dizi*/
 	 array <long, 71 > artis;
 	 
-	 /*Dizinin ilk 4 adımını ilklendirdim.*/
+	 /*Dizinin ilk 4 adÃ½mÃ½nÃ½ ilklendirdim.*/
 	 artis[0] = 0;
 	 artis[1] = 1;
 	 artis[2] = 2;
